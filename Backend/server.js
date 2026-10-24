@@ -72,6 +72,17 @@ const selectByCategory = db.prepare(`
     ORDER BY id ASC
 `);
 
+// Update existing database records to use the actual folder names.
+for (const [category, folder] of Object.entries(CATEGORIES)) {
+    db.prepare(
+        "UPDATE media SET folder = ? WHERE category = ?"
+    ).run(folder, category);
+}
+
+console.log(
+    "[Media Migration] Updated existing media folder paths."
+);
+
 // Convert a database record into a frontend-friendly object.
 function formatMedia(row) {
     return {
