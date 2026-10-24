@@ -90,48 +90,131 @@ function formatMedia(row) {
 
 // Register existing supported media files in the database.
 // This does not move or rename those files.
+// function registerExistingMedia() {
+//     for (const [category, folder] of Object.entries(CATEGORIES)) {
+//         const folderPath = path.join(UPLOADS_DIR, folder);
+
+//         for (const filename of fs.readdirSync(folderPath)) {
+//             const filePath = path.join(folderPath, filename);
+
+//             if (!fs.statSync(filePath).isFile()) {
+//                 continue;
+//             }
+
+//             const mimeType = mime.lookup(filePath);
+
+//             if (!mimeType) {
+//                 continue;
+//             }
+
+//             const isImage = mimeType.startsWith("image/");
+//             const isVideo = mimeType.startsWith("video/");
+
+//             const valid =
+//                 category === "Videos"
+//                     ? isVideo
+//                     : category === "Artwork" ||
+//                       ["Tiasha", "Tonmoy", "Combine"].includes(category)
+//                         ? isImage
+//                         : false;
+
+//             if (!valid) {
+//                 continue;
+//             }
+
+//             insertMedia.run({
+//                 category,
+//                 folder,
+//                 filename,
+//                 originalName: filename,
+//                 mimeType
+//             });
+//         }
+//     }
+// }
+
+
+
 function registerExistingMedia() {
+    let totalFilesFound = 0;
+    let totalRegistered = 0;
+
     for (const [category, folder] of Object.entries(CATEGORIES)) {
         const folderPath = path.join(UPLOADS_DIR, folder);
 
-        for (const filename of fs.readdirSync(folderPath)) {
-            const filePath = path.join(folderPath, filename);
+        try {
+            const filenames = fs.readdirSync(folderPath);
+            let categoryRegistered = 0;
 
-            if (!fs.statSync(filePath).isFile()) {
-                continue;
+            console.log(
+                `[Media Scan] ${category}: ${filenames.length} entries in ${folderPath}`
+            );
+
+            for (const filename of filenames) {
+                const filePath = path.join(folderPath, filename);
+
+                if (!fs.statSync(filePath).isFile()) {
+                    continue;
+                }
+
+                const mimeType = mime.lookup(filePath);
+
+                if (!mimeType) {
+                    continue;
+                }
+
+                const isImage = mimeType.startsWith("image/");
+                const isVideo = mimeType.startsWith("video/");
+
+                const valid =
+                    category === "Videos"
+                        ? isVideo
+                        : ["Tiasha", "Tonmoy", "Combine", "Artwork"].includes(category)
+                            ? isImage
+                            : false;
+
+                if (!valid) {
+                    continue;
+                }
+
+                totalFilesFound++;
+
+                const result = insertMedia.run({
+                    category,
+                    folder,
+                    filename,
+                    originalName: filename,
+                    mimeType
+                });
+
+                if (result.changes > 0) {
+                    categoryRegistered++;
+                    totalRegistered++;
+                }
             }
 
-            const mimeType = mime.lookup(filePath);
-
-            if (!mimeType) {
-                continue;
-            }
-
-            const isImage = mimeType.startsWith("image/");
-            const isVideo = mimeType.startsWith("video/");
-
-            const valid =
-                category === "Videos"
-                    ? isVideo
-                    : category === "Artwork" ||
-                      ["Tiasha", "Tonmoy", "Combine"].includes(category)
-                        ? isImage
-                        : false;
-
-            if (!valid) {
-                continue;
-            }
-
-            insertMedia.run({
-                category,
-                folder,
-                filename,
-                originalName: filename,
-                mimeType
-            });
+            console.log(
+                `[Media Scan] ${category}: ${categoryRegistered} new records registered`
+            );
+        } catch (error) {
+            console.error(
+                `[Media Scan] ERROR scanning ${folderPath}:`,
+                error.message
+            );
         }
     }
+
+    const databaseCount = db.prepare(
+        "SELECT COUNT(*) AS count FROM media"
+    ).get().count;
+
+    console.log(
+        `[Media Scan] Finished. Supported files found: ${totalFilesFound}; ` +
+        `new records: ${totalRegistered}; total database records: ${databaseCount}`
+    );
 }
+
+
 
 registerExistingMedia();
 
