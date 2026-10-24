@@ -1,0 +1,674 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Our Memory</title>
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="logo">Our Memory ❤️</div>
+            <div class="nav-menu">
+                <button
+                    class="nav-button active"
+                    onclick="showPage('home', this)">
+                    HOME
+                </button>
+                <button
+                    class="nav-button"
+                    onclick="showPage('upload', this)">
+                    UPLOAD
+                </button>
+            </div>
+        </nav>
+
+        <!-- HOME PAGE -->
+        <main id="home-page" class="page active-page">
+
+            <section class="hero">
+                <p class="small-heading">WELCOME TO</p>
+                <h1>Our Little World ❤️</h1>
+            
+                <p class="featuring-text">
+                    <span class="featuring-label">Featuring —</span>
+                    <span class="featuring-names">
+                        <button type="button" class="identity-name"
+                                data-identity="tiasha">Ashmita Roy Tiasha</button>
+                        <span class="name-separator">||</span>
+                        <button type="button" class="identity-name"
+                                data-identity="tonmoy">Tonmoy Goon</button>
+                    </span>
+                </p>
+            
+                <p class="hero-description">
+                    A place for our memories, moments and stories.
+                </p>
+            </section>
+
+            <section class="memory-container">
+                <div class="empty-memory" id="memory-container">
+                    <!-- <div class="memory-sticky-header"> -->
+                    <h2>Our Memories</h2>
+                    <p class="memory-subtitle">Explore our little world.</p>
+                    <div class="memory-menu">
+                        <button class="memory-button" onclick="selectMemorySection('photos', this)">📷 Photos</button>
+                        <button class="memory-button" onclick="selectMemorySection('videos', this)">🎬 Videos</button>
+                        <button class="memory-button" onclick="selectMemorySection('timeline', this)">🗓️ Timeline</button>
+                        <button class="memory-button" onclick="selectMemorySection('artwork', this)">🎨 Artwork</button>
+                        <button class="memory-button" onclick="selectMemorySection('funfact', this)">💡 Fun Fact</button>
+                        <button class="memory-button" onclick="openQuiz(this)">🧩 Quiz</button>
+                    </div>
+
+                    <!-- Photo-specific menu -->
+                    <div id="photo-menu" class="photo-menu" style="display: none;">
+                        <button
+                            class="photo-button"
+                            onclick="selectPhotoCategory('Tiasha', this)">
+                            Tiasha
+                        </button>
+                        <button
+                            class="photo-button"
+                            onclick="selectPhotoCategory('Tonmoy', this)">
+                            Tonmoy
+                        </button>
+                        <button
+                            class="photo-button"
+                            onclick="selectPhotoCategory('Combine', this)">
+                            Combine
+                        </button>
+                    <!-- </div> -->
+                    </div>
+
+                    <!-- Future content will appear here -->
+                    <div id="memory-section-content"></div>
+
+                    <!-- Timeline welcome section -->
+                    <div id="timeline-intro" class="timeline-intro" hidden>
+                        <h2>Want to Explore Our Timeline?</h2>
+                        <p>
+                            💝 Where our memories live forever 💝
+                        </p>
+                        <button class="memory-button timeline-explore-btn"
+                                onclick="openTimelinePopup()">
+                            Let's Explore It Together
+                        </button>
+                    </div>
+
+                    <!-- Timeline popup -->
+                    <div id="timeline-popup-overlay" class="timeline-popup-overlay" hidden>
+                        <div class="timeline-popup">
+                            <button class="timeline-back-btn" onclick="returnToMainMenu()" aria-label="Back to home">←</button>
+
+                            <h2 class="timeline-popup-heading">💖 Our Timeline 💖</h2>
+                            <div class="timeline-popup-content">
+
+                                <!-- FIRST TIMELINE CARD: ALWAYS VISIBLE -->
+                                <div class="timeline-card">
+                                    <div class="timeline-card-icon">👫</div>
+
+                                    <div class="timeline-card-details">
+                                        <h3 class="timeline-card-date">1st May 2015</h3>
+                                        <p>
+                                            We meet for the very first time in Dhaka at Uzzal Da's Weeding
+                                            and in our first meet up you call me that I was good among all siblings 🤗
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- GUESS THE YEAR QUESTION -->
+                                <div
+                                    id="timeline-year-quiz"
+                                    class="timeline-year-quiz"
+                                    data-correct-answer="2018"
+                                >
+                                    <h3>Guess the Year </h3>
+
+                                    <p class="timeline-year-question">
+                                       Tiasha, can you guess the year of when did we met for the 2nd time?
+                                    </p>
+
+                                    <div class="timeline-year-options">
+                                        <button
+                                            type="button"
+                                            class="timeline-year-option"
+                                            data-year="2018"
+                                            onclick="checkTimelineYear(this)"
+                                        >
+                                            A. 2023
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            class="timeline-year-option"
+                                            data-year="2019"
+                                            onclick="checkTimelineYear(this)"
+                                        >
+                                            B. 2024
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            class="timeline-year-option"
+                                            data-year="2020"
+                                            onclick="checkTimelineYear(this)"
+                                        >
+                                            C. 2025
+                                        </button>
+                                    </div>
+
+                                    <p
+                                        id="timeline-year-feedback"
+                                        class="timeline-year-feedback"
+                                        role="status"
+                                        aria-live="polite"
+                                    ></p>
+                                </div>
+
+                                <!-- SECOND TIMELINE CARD: LOCKED INITIALLY -->
+                                <div class="timeline-card timeline-locked-card" hidden>
+                                    <div class="timeline-card-icon">👫</div>
+
+                                    <div class="timeline-card-details">
+                                        <h3 class="timeline-card-date">16th December 2023</h3>
+                                        <p>
+                                            You came in our home for the first time with Mashi and Masho 
+                                            and we both were nervous and didn't talk that much 😔
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- THIRD TIMELINE CARD: LOCKED INITIALLY -->
+                                <div class="timeline-card timeline-locked-card" hidden>
+                                    <div class="timeline-card-icon">👫</div>
+
+                                    <div class="timeline-card-details">
+                                        <h3 class="timeline-card-date">18th February 2025</h3>
+                                        <p>
+                                            You came in Monisha's weeding and we both really enjoyed 
+                                            very much and at this specific moment we actually become very close friend 💖
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- CHAT HISTORY MESSAGE: HIDDEN INITIALLY -->
+                                <div id="timeline-chat-prompt" class="timeline-chat-prompt" hidden>
+                                    <p>Want to know about our first chat history? </p>
+
+                                    <button
+                                        type="button"
+                                        class="timeline-chat-button"
+                                        onclick="showFourthTimelineCard()">
+                                        View Chat History
+                                    </button>
+                                </div>
+
+                                <!-- FOURTH TIMELINE CARD: HIDDEN INITIALLY -->
+                                <div id="timeline-fourth-card" class="timeline-card" hidden>
+                                    <div class="timeline-card-icon">💬</div>
+
+                                    <div class="timeline-card-details">
+                                        <h3 class="timeline-card-date">20th February 2025</h3>
+                                        <p>
+                                            You texted me first in the night saying Hi and whom do I 
+                                            sleep with and from that day we started talking.                                            
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- RECENT MEETUP BUTTON: HIDDEN INITIALLY -->
+                                <div id="timeline-meetup-prompt" hidden>
+                                    <button
+                                        type="button"
+                                        id="timeline-meetup-button"
+                                        onclick="showMeetupTimelineCards()">
+                                        Want to know about our recent meetup?
+                                    </button>
+                                </div>
+
+                                <!-- FIFTH TIMELINE CARD: HIDDEN INITIALLY -->
+                                <div id="timeline-fifth-card" class="timeline-card" hidden>
+                                    <div class="timeline-card-icon">👫</div>
+
+                                    <div class="timeline-card-details">
+                                        <h3 class="timeline-card-date">9th June 2025</h3>
+                                        <p>
+                                            I went to your home for the very first time in 
+                                            the Eid vacation and we both really enjoyed the time together 😊
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- SIXTH TIMELINE CARD: HIDDEN INITIALLY -->
+                                <div id="timeline-sixth-card" class="timeline-card" hidden>
+                                    <div class="timeline-card-icon">👫</div>
+
+                                    <div class="timeline-card-details">
+                                        <h3 class="timeline-card-date">20th March 2026</h3>
+                                        <p>
+                                            I went to Dhaka to meet with you. Lots of hangout, memorable
+                                            moments and exactly from that day we almost talk regularly 💗
+                                        </p>
+                                    </div>
+                                </div>
+                               
+                                <!-- HARD TIMES PROMPT: HIDDEN INITIALLY -->
+                                <div id="timeline-hardtimes-prompt" hidden>
+                                    <div class="timeline-hardtimes-message">
+                                        <p>
+                                            In every relationship, there are battles and hard times.
+                                            We aren't free from them either. We have those moments too. 💔
+                                        </p>
+
+                                        <button
+                                            type="button"
+                                            id="timeline-hardtimes-button"
+                                            onclick="showHardTimesTimelineCards()">
+                                            Want to know about it?
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- SEVENTH TIMELINE CARD: HIDDEN INITIALLY -->
+                                <div id="timeline-seventh-card" class="timeline-card" hidden>
+                                    <div class="timeline-card-icon">💔</div>
+                                    <div class="timeline-card-details">
+                                        <h3 class="timeline-card-date">29th June 2026</h3>
+                                        <p>
+                                            Actually I misunderstood you on that day for a silly reason
+                                            and you get so much disappointed for that 🥲
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- EIGHTH TIMELINE CARD: HIDDEN INITIALLY -->
+                                <div id="timeline-eighth-card" class="timeline-card" hidden>
+                                    <div class="timeline-card-icon">💔</div>
+                                    <div class="timeline-card-details">
+                                        <h3 class="timeline-card-date">19th July 2026</h3>
+                                        <p>
+                                            I texted you though you were busy on that day but you 
+                                            actually misbehave with me very much on the world cup final day 🥲
+                                        </p>
+                                    </div>
+                                </div>
+
+                                
+                                <!-- TIMELINE CARD 9: OUR FOREVER -->
+                                <div
+                                    id="timeline-ninth-card"
+                                    class="timeline-card timeline-forever-card"
+                                    hidden
+                                >
+                                    <div class="timeline-forever-heart">❤️</div>
+
+                                    <h3>Our Forever</h3>
+
+                                    <p class="timeline-forever-message">
+                                        Our respect, our care and our memories together
+                                        will keep growing forever 🫶
+                                    </p>
+
+                                    <p class="timeline-forever-date">
+                                        01/05/2015 – ∞
+                                    </p>
+
+                                    <p class="timeline-forever-closing">
+                                        Let's continue it together 🥰
+                                    </p>
+                                </div>
+
+                                <!-- TIMELINE CARD 10: GO BACK TO HOME -->
+                                <div
+                                    id="timeline-tenth-card"
+                                    class="timeline-card timeline-home-card"
+                                    hidden
+                                >
+                                    <button
+                                        type="button"
+                                        class="timeline-home-button"
+                                        onclick="returnToMainMenu()"
+                                    >
+                                        Go Back to Home
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Your existing photo gallery -->
+                    <div id="photo-gallery"></div>
+
+                    <div id="uploaded-media-storage" hidden></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- UPLOAD PAGE -->
+        <main id="upload-page" class="page">
+            <section class="upload-section">
+                <div class="upload-card">
+                    <div class="upload-icon">📸</div>
+                    <p class="small-heading">ADD SOMETHING SPECIAL</p>
+                    <h1>Upload Your Memory</h1>
+                    <p>Choose a photo, video or other file from your computer.</p>
+
+                    <!-- Hidden file input -->
+                    <input
+                        type="file"
+                        id="file-input"
+                        hidden
+                        accept="image/*"
+                        onchange="handleFileUpload(event)"
+                    >
+                    <button
+                        class="upload-button"
+                        onclick="openCategorySelector()">
+                        Choose File
+                    </button>
+
+                    <div id="upload-category-menu" class="upload-category-menu" style="display: none;">
+                        <p class="category-title">Where should this memory go?</p>
+                        <button
+                            class="category-button"
+                            onclick="chooseUploadCategory('Tiasha')">
+                            Tiasha
+                        </button>
+                        <button
+                            class="category-button"
+                            onclick="chooseUploadCategory('Tonmoy')">
+                            Tonmoy
+                        </button>
+                        <button
+                            class="category-button"
+                            onclick="chooseUploadCategory('Combine')">
+                            Combine
+                        </button>
+                        <button
+                            class="category-button"
+                            onclick="chooseUploadCategory('Videos')">
+                            🎬 Videos
+                        </button>
+                        <button
+                            class="category-button"
+                            onclick="chooseUploadCategory('Artwork')">
+                            🎨 Artwork
+                        </button>
+                    </div>
+                    <p id="file-name" class="file-name"></p>
+                </div>
+            </section>
+        </main>
+
+
+        <!-- FOOTER: SHARED BY HOME AND UPLOAD PAGES -->
+        <footer class="site-footer">
+            <div class="footer-dedication">
+                <p class="footer-label">Inspired by & Dedicated to -- </p>
+                <p class="footer-name">Ashmita Roy Tiasha</p>
+            </div>
+
+            <div class="footer-creator">
+                <p class="footer-label">Created by -- </p>
+                <p class="footer-name">Tonmoy Goon</p>
+            </div>
+        </footer>
+
+        <!-- QUIZ POPUP -->
+        <div id="quiz-modal" class="quiz-modal">
+            <div class="quiz-box">
+                <button
+                    class="quiz-back-button"
+                    onclick="closeQuiz()">
+                    ←
+                </button>
+                <div class="quiz-content">
+                    <h1>Quiz 🧩</h1>
+                    <p class="quiz-description">Let's see Tiasha, how well you know me! 🤔</p>
+
+                    <!-- QUESTION 1 -->
+                    <div class="quiz-question" data-answer="C">
+                        <h2>1. What is your name saved on my phone?</h2>
+                        <button class="quiz-option" data-option="A">A. Tiasha Madam</button>
+                        <button class="quiz-option" data-option="B">B. Tiasha</button>
+                        <button class="quiz-option" data-option="C">C. Tiasha Madam 🥺</button>
+                        <button class="quiz-option" data-option="D">D. Tiasha Roy</button>
+                    </div>
+
+                    <!-- QUESTION 2 -->
+                    <div class="quiz-question" data-answer="D">
+                        <h2>2. What is my favourite drink?</h2>
+                        <button class="quiz-option" data-option="A">A. Hot Coffee</button>
+                        <button class="quiz-option" data-option="B">B. Lal Cha</button>
+                        <button class="quiz-option" data-option="C">C. Cold Coffee</button>
+                        <button class="quiz-option" data-option="D">D. Dudh Cha</button>
+                    </div>
+
+                    <!-- QUESTION 3 -->
+                    <div class="quiz-question" data-answer="B">
+                        <h2>3. Which year was I born in?</h2>
+                        <button class="quiz-option" data-option="A">A. 1998</button>
+                        <button class="quiz-option" data-option="B">B. 1999</button>
+                        <button class="quiz-option" data-option="C">C. 2000</button>
+                        <button class="quiz-option" data-option="D">D. 2001</button>
+                    </div>
+
+                    <!-- QUESTION 4 -->
+                    <div class="quiz-question" data-answer="A">
+                        <h2>4. Which one is my favourite season?</h2>
+                        <button class="quiz-option" data-option="A">A. Summer</button>
+                        <button class="quiz-option" data-option="B">B. Winter</button>
+                        <button class="quiz-option" data-option="C">C. Rainy Season</button>
+                        <button class="quiz-option" data-option="D">D. Autumn</button>
+                    </div>
+
+                    <!-- QUESTION 5 -->
+                    <div class="quiz-question" data-answer="C">
+                        <h2>5. Which name did I like the most to call you?</h2>
+                        <button class="quiz-option" data-option="A">A. Tiyu</button>
+                        <button class="quiz-option" data-option="B">B. Madam</button>
+                        <button class="quiz-option" data-option="C">C. Madam Ji</button>
+                        <button class="quiz-option" data-option="D">D. Cuttiiee</button>
+                    </div>
+
+                    <!-- QUESTION 6 -->
+                    <div class="quiz-question" data-answer="C">
+                        <h2>6. Who is my favourite actress?</h2>
+                        <button class="quiz-option" data-option="A">A. Alia Bhat</button>
+                        <button class="quiz-option" data-option="B">B. Katrina Kaif</button>
+                        <button class="quiz-option" data-option="C">C. Samantha Ruth Pravu</button>
+                        <button class="quiz-option" data-option="D">D. Deepika</button>
+                    </div>
+
+                    <!-- QUESTION 7 -->
+                    <div class="quiz-question" data-answer="A">
+                        <h2>7. On which date did we first met?</h2>
+                        <button class="quiz-option" data-option="A">A. 1st May 2015</button>
+                        <button class="quiz-option" data-option="B">B. 1st April 2015</button>
+                        <button class="quiz-option" data-option="C">C. 1st May 2016</button>
+                        <button class="quiz-option" data-option="D">D. 1st April 2016</button>
+                    </div>
+
+                    <!-- QUESTION 8 -->
+                    <div class="quiz-question" data-answer="D">
+                        <h2>8. Which one is my favourite thing to do with you?</h2>
+                        <button class="quiz-option" data-option="A">A. To make you laugh</button>
+                        <button class="quiz-option" data-option="B">B. To fight with you</button>
+                        <button class="quiz-option" data-option="C">C. To surprise you</button>
+                        <button class="quiz-option" data-option="D">D. To irritate you</button>
+                    </div>
+
+                    <!-- QUESTION 9 -->
+                    <div class="quiz-question" data-answer="C">
+                        <h2>9. Which one is my favourite place to visit?</h2>
+                        <button class="quiz-option" data-option="A">A. Sirajganj</button>
+                        <button class="quiz-option" data-option="B">B. Dhaka</button>
+                        <button class="quiz-option" data-option="C">C. Sylhet</button>
+                        <button class="quiz-option" data-option="D">D. Chittagong</button>
+                    </div>
+
+                    <!-- QUESTION 10 -->
+                    <div class="quiz-question" data-answer="B">
+                        <h2>10. Which city did I born?</h2>
+                        <button class="quiz-option" data-option="A">A. Dhaka</button>
+                        <button class="quiz-option" data-option="B">B. Rajshahi</button>
+                        <button class="quiz-option" data-option="C">C. Sirajganj</button>
+                        <button class="quiz-option" data-option="D">D. Rangpur</button>
+                    </div>
+
+                    <!-- QUIZ RESULT -->
+                    <div class="quiz-result" id="quiz-result"></div>
+                    <button
+                        class="quiz-submit-button"
+                        onclick="submitQuiz()">
+                        Submit Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- ========================================
+            FUN FACT ANIMATION POPUP
+        ======================================== -->
+
+        <div id="fun-fact-stage" class="fun-fact-stage" hidden>
+            <div class="fun-fact-panel">
+
+                <header class="fun-fact-heading">
+                    <h2>Interesting Facts About Us ❤️</h2>
+                    <p>Two little hearts, two little stories.</p>
+                </header>
+
+                <div class="fun-fact-scene">
+
+                    <!-- BOY: ENTERS FROM THE TOP -->
+                    <div
+                        id="fun-fact-boy"
+                        class="fun-fact-character fun-fact-boy"
+                    >
+
+                        <div class="fun-fact-balloon">
+                            <span class="fun-fact-balloon-text">
+                                You always came in my mind all the time Tiyu 🥺
+                            </span>
+                            <span class="fun-fact-balloon-string"></span>
+                        </div>
+
+                        <div class="fun-fact-cartoon">
+
+                            <div class="fun-fact-head">
+                                <span class="fun-fact-hair"></span>
+                                <span class="fun-fact-eye fun-fact-eye-left"></span>
+                                <span class="fun-fact-eye fun-fact-eye-right"></span>
+                                <span class="fun-fact-smile"></span>
+                            </div>
+
+                            <span class="fun-fact-arm fun-fact-arm-left"></span>
+                            <span class="fun-fact-arm fun-fact-arm-right"></span>
+
+                            <div class="fun-fact-body">
+                                <span class="fun-fact-name">Tonmoy</span>
+                            </div>
+
+                            <span class="fun-fact-leg fun-fun-fact-leg-left"></span>
+                            <span class="fun-fact-leg fun-fun-fact-leg-right"></span>
+
+                        </div>
+                    </div>
+
+
+                    <!-- GIRL: ENTERS FROM THE RIGHT -->
+                    <div
+                        id="fun-fact-girl"
+                        class="fun-fact-character fun-fact-girl"
+                    >
+
+                        <div class="fun-fact-balloon">
+                            <span class="fun-fact-balloon-text">
+                                I can instantly make you happy when you are angry with me 😎
+                            </span>
+                            <span class="fun-fact-balloon-string"></span>
+                        </div>
+
+                        <div class="fun-fact-cartoon">
+
+                            <div class="fun-fact-head">
+                                <span class="fun-fact-hair"></span>
+                                <span class="fun-fact-eye fun-fact-eye-left"></span>
+                                <span class="fun-fact-eye fun-fact-eye-right"></span>
+                                <span class="fun-fact-smile"></span>
+                            </div>
+
+                            <span class="fun-fact-arm fun-fact-arm-left"></span>
+                            <span class="fun-fact-arm fun-fact-arm-right"></span>
+
+                            <div class="fun-fact-body">
+                                <span class="fun-fact-name">Tiasha</span>
+                            </div>
+
+                            <span class="fun-fact-leg fun-fun-fact-leg-left"></span>
+                            <span class="fun-fact-leg fun-fun-fact-leg-right"></span>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- APPEARS ONLY AFTER BOTH CHARACTERS ARRIVE -->
+                <button
+                    id="fun-fact-home-button"
+                    class="fun-fact-home-button"
+                    type="button"
+                    onclick="closeFunFactAndReturnHome()"
+                    hidden
+                >
+                    Go Back to Home
+                </button>
+
+            </div>
+        </div>
+
+        <!-- PERSONAL IDENTITY POPUP -->
+        <div id="identity-modal" class="identity-modal"
+            aria-hidden="true">
+
+            <div class="identity-card" role="dialog"
+                aria-modal="true"
+                aria-labelledby="identity-title">
+
+                <button type="button" class="identity-close"
+                        id="identity-close"
+                        aria-label="Close identity popup">
+                    &times;
+                </button>
+
+                <div class="identity-photo-container">
+                    <img id="identity-photo"
+                        class="identity-photo"
+                        src="Images/tiasha.jpeg"
+                        alt="Personal portrait">
+                </div>
+
+                <div class="identity-details">
+                    <h2 id="identity-title">Tiasha</h2>
+                    <p id="identity-description"
+                    class="identity-description"></p>
+
+                    <div class="identity-decoration">♡ ✨ ♡</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript -->
+        <script src="app.js"></script>
+
+    </body>
+</html>
