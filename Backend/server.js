@@ -12,16 +12,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const PROJECT_ROOT = path.join(__dirname, "..");
-const UPLOADS_DIR = path.join(__dirname, "uploads");
+const UPLOADS_DIR = path.join(__dirname, "Uploads");
 const DATABASE_PATH = path.join(__dirname, "memory.db");
 
 // The five existing upload destinations.
 const CATEGORIES = {
-    Tiasha: "tiasha",
-    Tonmoy: "tonmoy",
-    Combine: "combine",
-    Videos: "videos",
-    Artwork: "artwork"
+    Tiasha: "Tiasha",
+    Tonmoy: "Tonmoy",
+    Combine: "Combine",
+    Videos: "Videos",
+    Artwork: "Artwork"
 };
 
 // Create any missing upload directories.
