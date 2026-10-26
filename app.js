@@ -101,7 +101,7 @@ function selectMemorySection(sectionName, clickedButton) {
 
         // Create the Back button
         const backButton = document.createElement("button");
-        backButton.textContent = "← Go back";
+        backButton.textContent ="⬅";
         backButton.className = "memory-button memory-back-button";
         backButton.style.display = "block";
         backButton.style.margin = "0";
@@ -165,7 +165,7 @@ function selectMemorySection(sectionName, clickedButton) {
 
     // Create the back button
     const backButton = document.createElement("button");
-    backButton.textContent = "← Go back";
+    backButton.textContent = "⬅";
     backButton.className = "memory-button memory-back-button";
     backButton.style.display = "block";
     backButton.style.margin = "0";
@@ -1340,7 +1340,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 image: "Images/tiasha.jpeg",
                 alt: "Tiasha's portrait",
                 description:
-                    "Tiasha was born on January 6, 2011 in Rajshahi. She is a very talented girl since her childhood. Currently she is studying at class 9. Her hobby is to become a Great Dancer and from her childhood she loves dance very much. Her expression, dance movements and overall dance performance is outstanding and eye soothing. She is also a very beautiful and sweet girl and very much friendly to everyone. She is also very good at art."
+                    "Tiasha was born on January 6, 2011 in Rajshahi. She is a very talented girl. Currently she is studying at class 9. Her hobby is to become a Great Dancer and from her childhood she loves dance very much. Her dance performance is outstanding and eye soothing and won many awards in dance competitions. She is a very beautiful and sweet girl. She is also very much friendly to everyone. She is very good at drawing also."
             },
 
             tonmoy: {
