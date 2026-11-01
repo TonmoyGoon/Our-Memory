@@ -1336,11 +1336,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // Edit these details and image paths whenever you like.
         const identities = {
             tiasha: {
-                name: "Ashmita Roy Tiasha",
+                name: "Ashmita Roy",
                 image: "Images/tiasha.jpeg",
                 alt: "Tiasha's portrait",
                 description:
-                    "Tiasha was born on January 6, 2011 in Rajshahi. She is a very talented girl. Currently she is studying at class 9. Her hobby is to become a Great Dancer and from her childhood she loves dance very much. Her dance performance is outstanding and eye soothing and won many awards in dance competitions. She is a very beautiful and sweet girl. She is also very much friendly to everyone. She is very good at drawing also."
+                    "Ashmita Roy (Nickname: Tiasha) was born on January 6, 2011 in Rajshahi. She is a very talented girl. Currently she is studying at class 9. Her dream is to become a Great Dancer. She has loved daning since her childhood. Her dance performances are outstanding, pleasing to the eye and she has won many awards in dance competitions. She is a very beautiful and sweet girl. She is very much friendly to everyone. She is very good at drawing also."
             },
 
             tonmoy: {
@@ -1348,7 +1348,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 image: "Images/tonmoy.jpeg",
                 alt: "Tonmoy's portrait",
                 description:
-                    "Tonmoy was born on June 6, 1999 in Rajshahi. He is a graduate Engineer from Bangladesh University of Textiles. After completing graduation, he worked in Fabric R&D department as an Executive Officer at Interstoff Apparels Ltd. He is a talented guy and studied in some of the renowned instituitions in Bangladesh like B.L. Govt. High School, Notre Dame College and currently IBA JU. His hobby is programming and problem solving."
+                    "Tonmoy was born on June 6, 1999 in Rajshahi. He is a Textile Engineer graduated from Bangladesh University of Textiles. After completing graduation, he worked in Fabric R&D department as an Executive Officer at Interstoff Apparels Ltd. He is a talented guy and studied in some of the renowned instituitions in Bangladesh like B.L. Govt. High School, Notre Dame College and currently IBA JU. His hobby is programming and problem solving."
             }
         };
 
